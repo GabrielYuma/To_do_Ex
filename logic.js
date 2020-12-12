@@ -1,7 +1,7 @@
 var submit = document.querySelector(".botao")
 var i = 0;
 var listaSortida = []
-var variavel = ""
+var innerList = ""
 
 carregaLista();
 submit.addEventListener('click', function (event) {
@@ -82,16 +82,16 @@ function carregaLista() {
                     if (j == 0) {
                         j = i
                     }
-                    variavel += fillListCorpo(j, i)
+                    innerList += fillListCorpo(j, i)
                 } else {
-                    if (variavel) {
-                        variavel += fillListCorpo(j, i)
-                        collapse.innerHTML += montarfilllist(variavel, j)
+                    if (innerList) {
+                        innerList += fillListCorpo(j, i)
+                        collapse.innerHTML += montarfilllist(innerList, j)
                     } else {
                         collapse.innerHTML += fillList(i)
                     }
                     j = 0
-                    variavel = ""
+                    innerList = ""
                 }
             }
             collapse.innerHTML += fillList(i)
