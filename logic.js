@@ -84,17 +84,17 @@ function carregaLista() {
                     }
                     innerList += fillListCorpo(j, i)
                 } else {
-                    check(innerList, collapse, j, i)
+                    fill(innerList, collapse, j, i)
                     j = 0
                     innerList = ""
                 }
             }
-            check(innerList, collapse, j, i)
+            fill(innerList, collapse, j, i)
         }
     }
 }
 
-function check(InnerList, Collapse, J, I) {
+function fill(InnerList, Collapse, J, I) {
 
     if (InnerList) {
         InnerList += fillListCorpo(J, I)
