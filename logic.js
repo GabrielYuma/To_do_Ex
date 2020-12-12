@@ -61,7 +61,6 @@ function carregaLista() {
     let array = localStorage.getItem('todo')
     let listaDeAfazeres = JSON.parse(array)
     let collapse = document.querySelector("#colapsivel")
-   // var confere = false
 
     if (listaDeAfazeres) {
         listaSortida = listaDeAfazeres.sort(function (a, b) {
@@ -76,55 +75,32 @@ function carregaLista() {
         if (listaSortida) {
             collapse.innerHTML = ""
 
-            /* while (i < listaSortida.length-1) {
-                 while (listaSortida[i].Date == listaSortida[i + 1].Date) {
-                     variavel += fillListCorpo(i)
-                     i++
-                 }             
-                 collapse.innerHTML += fillList(i + 1)
-                 i++
-             }
-         }*/
-          // for (i = 0; i < listaSortida.length - 1; i++) {
-          //     if (listaSortida[i].Date == listaSortida[i + 1].Date) {
-          //         variavel += fillListCorpo(i)
-          //     } else {
-          //         if(variavel){
-          //             collapse.innerHTML += montarfilllist(variavel, i)
-          //         }
-          //         collapse.innerHTML += fillList(i + 1)
-          //     }
-          // }
+            var j = 0
 
-          for(i = 0; i< listaSortida.length; i++){
-              let cabecalho = `<div class="accordion" id="accordionExample">
-              <div class="card">
-                  <div class="card-header" id="headingOne">
-                      <h2 class="mb-0">
-                          <button class="btn btn-link btn-block text-left" type="button"
-                              data-toggle="collapse" data-target="#collapseOne${i}" aria-expanded="true"
-                              aria-controls="collapseOne">
-                              Data: ${listaSortida[i].Date}
-                          </button>
-                      </h2>
-                  </div>`;
-              for(let j=0; j< listaSortida.length; j++){
-                if(listaSortida[i].Date == listaSortida[j].Date){
-                    variavel +=  fillListCorpo(i)
+            for (i = 0; i < listaSortida.length - 1; i++) {
+                if (listaSortida[i].Date == listaSortida[i + 1].Date) {
+                    if (j == 0) {
+                        j = i
+                    }
+                    variavel += fillListCorpo(j, i)
+                } else {
+                    if (variavel) {
+                        variavel += fillListCorpo(j, i)
+                        collapse.innerHTML += montarfilllist(variavel, j)
+                    } else {
+                        collapse.innerHTML += fillList(i)
+                    }
+                    j = 0
+                    variavel = ""
                 }
-              }
-              cabecalho += variavel;
-              cabecalho+= ` </div>
-              </div> `; 
-              collapse.innerHTML += cabecalho;
-
-          }
+            }
+            collapse.innerHTML += fillList(i)
         }
     }
 }
 
-function fillListCorpo(I) {
-    return `<div id="collapseOne${I}" class="collapse" aria-labelledby="headingOne"
+function fillListCorpo(J, I) {
+    return `<div id="collapseOne${J}" class="collapse" aria-labelledby="headingOne"
                 data-parent="#accordionExample">
                 <div class="card-body">
                 ${listaSortida[I].Desc}                
@@ -133,15 +109,15 @@ function fillListCorpo(I) {
 
 }
 
-function montarfilllist(Variavel, I) {
+function montarfilllist(Variavel, J) {
     return `<div class="accordion" id="accordionExample">
             <div class="card">
                 <div class="card-header" id="headingOne">
                     <h2 class="mb-0">
                         <button class="btn btn-link btn-block text-left" type="button"
-                            data-toggle="collapse" data-target="#collapseOne${I}" aria-expanded="true"
+                            data-toggle="collapse" data-target="#collapseOne${J}" aria-expanded="true"
                             aria-controls="collapseOne">
-                            Data: ${listaSortida[I].Date}
+                            Data: ${listaSortida[J].Date}
                         </button>
                     </h2>
                 </div>
