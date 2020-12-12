@@ -84,19 +84,25 @@ function carregaLista() {
                     }
                     innerList += fillListCorpo(j, i)
                 } else {
-                    if (innerList) {
-                        innerList += fillListCorpo(j, i)
-                        collapse.innerHTML += montarfilllist(innerList, j)
-                    } else {
-                        collapse.innerHTML += fillList(i)
-                    }
+                    check(innerList, collapse, j, i)
                     j = 0
                     innerList = ""
                 }
             }
-            collapse.innerHTML += fillList(i)
+            check(innerList, collapse, j, i)
         }
     }
+}
+
+function check(InnerList, Collapse, J, I) {
+
+    if (InnerList) {
+        InnerList += fillListCorpo(J, I)
+        Collapse.innerHTML += montarfilllist(InnerList, J)
+    } else {
+        Collapse.innerHTML += fillList(I)
+    }
+
 }
 
 function fillListCorpo(J, I) {
